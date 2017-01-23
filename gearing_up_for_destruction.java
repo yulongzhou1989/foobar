@@ -45,41 +45,65 @@ public class gearing_up_for_destruction {
 	
 	public static int [] answer(int [] pegs){
 		
+		int [] notQualified = {-1, -1};
+		
 		if (pegs.length<2 || pegs.length>10000){
-			return new int [] {-1, -1};
+			return notQualified;
 		}
 		
 		if (pegs.length == 2){
 			int a1 = pegs[0];
 			int a2 = pegs[1];
-			int a, b, r1 = 0;
+			int a, b, r1 = 0, r2=0;
 			if (a2-a1<2){
-				return new int [] {-1, -1};
+				return notQualified;
 			}
 			else {
 				if ((a2-a1)%3 == 0){
-					r1 = 2*((a2-a1)/3);
-					return new int [] {r1, 1};
+					r2 = (a2-a1)/3;
+					r1 = 2*(r2);
+					if (r2<1 || r1<1){
+						return notQualified;
+					}else {
+						return new int [] {r1, 1};
+					}
 				} else {
 					a = 2 * (a2-a1);
 					b = 3;
-					return new int [] {a, b};
+					r1 = (a2-a1) /3;
+					r2 = r1*2;
+					if (r2<1 || r1<1){
+						return notQualified;
+					}else {
+						return new int [] {a, b};
+					}
 				}
 			}
 		}
 		
 		int len = pegs.length;
-		int an = pegs[len-1];
-		int an_1 = pegs[len-2];
-		int a1 = pegs[0];
-		int r1 = 2*(2*an_1 - a1 -an);
+		int rn = pegs[len-1] - pegs[0];
+		int r1 = 0;
+		int a=0, b=0;
+		for (int i=1;i<len-1;i++){
+			rn += i%2 == 0? -2*pegs[i]: 2*pegs[i];
+		}
+		
+		if (rn%3 == 0){
+			r1 = rn/3 * 2;
+			a = r1;
+			b = 1;
+		} else {
+			a = 2 * rn;
+			b = 3;
+		}
 		
 		if(!checkEachRadius(r1, pegs)){
-			return new int [] {-1, -1};
+			return notQualified;
 		}
 		else 
 		{
-			return new int [] {r1, 1};
+			return new int [] {a, b};
 		}
 	}
 	
