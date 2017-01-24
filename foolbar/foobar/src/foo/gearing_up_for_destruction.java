@@ -1,4 +1,4 @@
-package minion_labor_shifts;
+package foo;
 
 // Gearing Up for Destruction
 // ==========================
@@ -39,7 +39,7 @@ public class gearing_up_for_destruction {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int [] data = {0,5,8};
+		int [] data = {4, 30, 50};
 		System.out.println(Arrays.toString(answer(data)));
 	}
 	

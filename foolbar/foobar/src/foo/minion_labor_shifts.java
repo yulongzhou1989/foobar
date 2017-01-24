@@ -1,4 +1,4 @@
-package minion_labor_shifts;
+package foo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
