@@ -40,6 +40,12 @@ package foo;
 //Output:
 //    (int) 3
 
+//n=⌊logφ(F⋅√5+1/2)⌋.
+
+//https://github.com/gvavvari/Python/blob/master/Lovely%20Lucky%20Lambs/lucky_lamb.py
+
+//math.log(n * math.sqrt(5) + 0.5) / math.log(1.61803398875)
+
 public class lovely_lucky_lambs {
 	
 	public static void main(String[] args) {
