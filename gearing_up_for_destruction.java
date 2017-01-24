@@ -39,7 +39,7 @@ public class gearing_up_for_destruction {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int [] data = {0,5,8};
+		int [] data = {4, 7};
 		System.out.println(Arrays.toString(answer(data)));
 	}
 	
@@ -51,51 +51,37 @@ public class gearing_up_for_destruction {
 			return notQualified;
 		}
 		
-		if (pegs.length == 2){
-			int a1 = pegs[0];
-			int a2 = pegs[1];
-			int a, b, r1 = 0, r2=0;
-			if (a2-a1<2){
-				return notQualified;
-			}
-			else {
-				if ((a2-a1)%3 == 0){
-					r2 = (a2-a1)/3;
-					r1 = 2*(r2);
-					if (r2<1 || r1<1){
-						return notQualified;
-					}else {
-						return new int [] {r1, 1};
-					}
-				} else {
-					a = 2 * (a2-a1);
-					b = 3;
-					r1 = (a2-a1) /3;
-					r2 = r1*2;
-					if (r2<1 || r1<1){
-						return notQualified;
-					}else {
-						return new int [] {a, b};
-					}
-				}
-			}
-		}
-		
 		int len = pegs.length;
-		int rn = pegs[len-1] - pegs[0];
-		int r1 = 0;
+		double rn = pegs[len-1];
+		double r1 = 0;
 		int a=0, b=0;
-		for (int i=1;i<len-1;i++){
-			rn += i%2 == 0? -2*pegs[i]: 2*pegs[i];
+		
+		String operator = "minus";
+		for (int i=len-2;i>=0;i--){
+			double currentNum = i==0? pegs[i]: 2*pegs[i]; 
+			
+			if (operator.equals("minus")){
+				rn -= currentNum;
+				operator = "plus";
+			} else {
+				rn += currentNum;
+				operator = "minus";
+			}
 		}
 		
-		if (rn%3 == 0){
+		if (len%2 == 0){
 			r1 = rn/3 * 2;
-			a = r1;
+			if (rn%3 == 0){
+				a = (int)r1;
+				b = 1;
+			} else {
+				a = (int)(2 * rn);
+				b = 3;
+			}
+		}else {
+			r1 = -rn*2;
+			a = (int)r1;
 			b = 1;
-		} else {
-			a = 2 * rn;
-			b = 3;
 		}
 		
 		if(!checkEachRadius(r1, pegs)){
@@ -107,8 +93,10 @@ public class gearing_up_for_destruction {
 		}
 	}
 	
-	public static boolean checkEachRadius (int r1, int [] pegs){
-		int r, r_prev = r1;
+	public static boolean checkEachRadius (double r1, int [] pegs){
+		double r, r_prev = r1;
+		if (r1<1) return false;
+		
 		for (int i=0; i<pegs.length; i++){
 			r = i==0? r1: (pegs[i]-pegs[i-1]- r_prev);
 			if (r<1) {
