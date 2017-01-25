@@ -15,6 +15,7 @@ public class find_the_access_codes {
 		//if (l.length<3)
 		//	return 0;
 			//return foolMethod(l);
+		
 		int [] memo = new int [l.length];
 		int sum=0;
 		for (int i=1;i<l.length;i++){
