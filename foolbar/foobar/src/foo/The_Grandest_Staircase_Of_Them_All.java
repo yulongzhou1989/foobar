@@ -6,7 +6,7 @@ public class The_Grandest_Staircase_Of_Them_All {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(answer(200));
+		System.out.println(answer(10));
 	}
 	
 //	public static int answer(int n) { 

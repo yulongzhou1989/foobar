@@ -1,7 +1,5 @@
 package foo;
 
-import java.util.Arrays;
-
 public class find_the_access_codes {
 
 	public static void main(String[] args) {
